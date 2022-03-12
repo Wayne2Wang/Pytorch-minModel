@@ -12,18 +12,22 @@ pip install -r requirements.txt
 
 
 ## Implemented models
-- Generative Adversarial Networks (GANs)
+- <i>Generative Adversarial Networks (GANs)</i>
   - paper: https://arxiv.org/abs/1406.2661, 2014
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
+  - demo on MNIST
+  <p align="center"><img src="assets/gan.gif" width="300">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/GAN_49.png" width="300"></p>
   
-  <p align="center"><img src="assets/gan.gif"></p>
   
-  
-- Conditional Generative Adversarial Networks (cGANs)
+- <i>Conditional Generative Adversarial Networks (cGANs)</i>
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
-
-  <p align="center"><img src="assets/cGAN.gif"></p>
+  - demo on MNIST
+  <p align="center"><img width="400" src="assets/cGAN.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="400" src="assets/cGAN_49.png"></p>
 
 ## To be implemented
 - Eval GAN and cGAN on the celebrity dataset
