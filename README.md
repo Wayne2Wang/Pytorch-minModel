@@ -15,11 +15,18 @@ pip install -r requirements.txt
 - Generative Adversarial Networks (GANs)
   - paper: https://arxiv.org/abs/1406.2661, 2014
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
+  
+  <p align="center"><img src="assets/gan.gif"></p>
+  
+  
 - Conditional Generative Adversarial Networks (cGANs)
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
 
+  <p align="center"><img src="assets/cGAN.gif"></p>
+
 ## To be implemented
+- Eval GAN and cGAN on the celebrity dataset
 - ResNet
 - ViT
 - StyleGan
