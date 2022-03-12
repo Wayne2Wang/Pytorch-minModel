@@ -25,9 +25,9 @@ pip install -r requirements.txt
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
   - demo on MNIST
-  <p align="center"><img width="400" src="assets/cGAN.gif">
+  <p align="center"><img width="300" src="assets/cGAN.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="400" src="assets/cGAN_49.png"></p>
+  <img width="300" src="assets/cGAN_49.png"></p>
 
 ## To be implemented
 - Eval GAN and cGAN on the celebrity dataset
