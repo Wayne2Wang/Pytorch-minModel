@@ -33,5 +33,5 @@ class Generator(nn.Module):
             nn.Tanh()
         )
     
-    def forward(self, x):
-        return self.g(x)
+    def forward(self, z):
+        return self.g(z)

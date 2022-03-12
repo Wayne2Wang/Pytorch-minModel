@@ -12,15 +12,16 @@ import torchvision.datasets as datasets
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 from torch.utils.tensorboard import SummaryWriter  # to print to tensorboard
+from torch.nn.functional import one_hot
 
-from gan import Discriminator, Generator
+from cgan import Discriminator, Generator
 
 
 def save_img(img, title, dir):
-    plt.figure(figsize = (4,4))
+    plt.figure(figsize = (6,6))
     plt.imshow(torch.permute(img.cpu(),(1,2,0)))
     plt.axis('off')
-    plt.title(title, y=-0.16, fontsize=10)
+    plt.title(title, y=-0.06, fontsize=10)
     plt.savefig(os.path.join(dir, title+'.png'), bbox_inches='tight',pad_inches = 0)
     plt.close()
 
@@ -28,28 +29,32 @@ def save_img(img, title, dir):
 # Hyper-parameters
 device = "cuda" if torch.cuda.is_available() else "cpu"
 lr = 3e-4
-noise_dim = 64
+noise_dim = 100
 img_dim = 28 * 28 * 1  # 784
-batch_size = 32
+label_dim = 10 # number of classes
+batch_size = 100
 num_epochs = 50
 k = 1 
 transforms = transforms.Compose(
     [transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,)),]
 )
 
+
 # Load dataset
 dataset = datasets.MNIST(root="../../datasets/", transform=transforms, download=True)
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, drop_last=True)
 
 # Initialize model and optimizer
-disc = Discriminator(img_dim).to(device)
-gen = Generator(noise_dim, img_dim).to(device)
+disc = Discriminator(img_dim, label_dim).to(device)
+gen = Generator(noise_dim, img_dim, label_dim).to(device)
 opt_disc = optim.Adam(disc.parameters(), lr=lr)
 opt_gen = optim.Adam(gen.parameters(), lr=lr)
 criterion = nn.BCELoss()
 
-# The fixed noise to evaluate
+# The fixed noise and labels to evaluate
 fixed_noise = torch.randn((batch_size, noise_dim)).to(device)
+all_class = torch.arange(label_dim).reshape(1,-1)
+fixed_label = one_hot(all_class[[0]*label_dim].T.reshape(-1)).to(torch.float32).to(device) # 10 samples for each class, one-hot encoded
 
 # Build result directory
 writer = SummaryWriter("logs/")
@@ -69,22 +74,25 @@ for epoch in range(num_epochs):
 
     # Sample images
     with torch.no_grad():
-        fake = gen(fixed_noise).reshape(-1, 1, 28, 28)
-        img_grid_fake = torchvision.utils.make_grid(fake, normalize=True, pad_value=1)
+        fake = gen(fixed_noise, fixed_label).reshape(-1, 1, 28, 28)
+        img_grid_fake = torchvision.utils.make_grid(fake, normalize=True, pad_value=1, nrow=label_dim)
         save_img(img_grid_fake, 'Epoch {}'.format(epoch), fake_dir)
         step += 1
 
     # Train for an epoch
-    for batch_id, (real, _) in tqdm(enumerate(loader), ascii=True, desc='Epoch {}/{}'\
+    for batch_id, (real, y) in tqdm(enumerate(loader), ascii=True, desc='Epoch {}/{}'\
                                             .format(epoch+1, num_epochs),total=len(loader)):
         
+        # convert label to one-hot float vector and move to appropriate device
+        y = one_hot(y, num_classes=label_dim).to(torch.float32).to(device)
+
         # Train Discriminator: max log(D(x)) + log(1 - D(G(z)))
         for _ in range(k):
             z = torch.randn(batch_size, noise_dim).to(device)
-            fake = gen(z)
+            fake = gen(z,y)
             flat_real = real.view(batch_size, img_dim).to(device)
-            disc_real = disc(flat_real).view(-1)
-            disc_fake = disc(fake).view(-1)
+            disc_real = disc(flat_real,y).view(-1)
+            disc_fake = disc(fake,y).view(-1)
             loss_real = criterion(disc_real, torch.ones_like(disc_real))
             loss_fake = criterion(disc_fake, torch.zeros_like(disc_fake))
             loss_D = (loss_real + loss_fake) / batch_size
@@ -94,8 +102,8 @@ for epoch in range(num_epochs):
         
         # Train Generator: min log(1 - D(G(z))) <-> max log(D(G(z))
         z = torch.randn(batch_size, noise_dim).to(device)
-        fake = gen(z)
-        disc_fake = disc(fake).view(-1)
+        fake = gen(z,y)
+        disc_fake = disc(fake,y).view(-1)
         loss_G = criterion(disc_fake, torch.ones_like(disc_fake)) / batch_size
         gen.zero_grad()
         loss_G.backward()

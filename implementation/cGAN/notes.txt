@@ -1,0 +1,21 @@
+
+- tanh in the generator is very important;
+
+- leaky relu is not so important;
+
+- dropout in the discriminator is important; 
+    intuition might be we want a powerful but strongly regularized discriminator;
+
+
+
+When generator has tanh, the training is stable
+    just a matter of learning speed; weak D might not guid G well, weak G might not learn from D well
+
+When generator has sigmoid, the training is abnormal
+    weak D -> all sampled noise produce the same pattern (mode collpase?)
+              model converged to all black or a certain pattern(might be oscillating)
+              loss_D=0, loss_G keeps increasing
+        decrease lr_D -> loss_D keeps decreasing, loss_G keeps increasing
+                         converged to all black or oscillated between a few patterns
+    normal D,G -> similar observation
+    weak G -> to be tested
