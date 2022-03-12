@@ -10,6 +10,12 @@ pip install -r requirements.txt
 ```
 (Optional) If you have an NVIDIA GPU, you can accelerate training by installing [CUDA](https://developer.nvidia.com/cuda-downloads/) and [cuDNN](https://developer.nvidia.com/cudnn) of the correct version.
 
+Typically, one only needs to go to the folder for the desired model and run 
+```
+python train.py
+```
+Specific instructions will be provided in the "Implemented models" section, if needed.
+
 
 ## Implemented models
 - <i>Generative Adversarial Networks (GANs)</i>
