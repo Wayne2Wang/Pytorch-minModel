@@ -1,0 +1,105 @@
+import os
+import time
+from tqdm import tqdm
+
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+import torchvision.datasets as datasets
+from torch.utils.data import DataLoader
+import torchvision.transforms as transforms
+from torch.utils.tensorboard import SummaryWriter  # to print to tensorboard
+
+from gan import Discriminator, Generator
+
+
+# Hyper-parameters
+device = "cuda" if torch.cuda.is_available() else "cpu"
+lr = 3e-4
+noise_dim = 64
+img_dim = 28 * 28 * 1  # 784
+batch_size = 128
+num_epochs = 50
+transforms = transforms.Compose(
+    [transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,)),]
+)
+criterion = nn.BCELoss()
+k = 1 
+writer = SummaryWriter("logs/")
+
+# Load dataset
+dataset = datasets.MNIST(root="../../datasets/", transform=transforms, download=True)
+loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+
+# Initialize model and optimizer
+disc = Discriminator(img_dim).to(device)
+gen = Generator(noise_dim, img_dim).to(device)
+opt_disc = optim.Adam(disc.parameters(), lr=lr)
+opt_gen = optim.Adam(gen.parameters(), lr=lr)
+
+# The fixed noise to evaluate
+fixed_noise = torch.randn((batch_size, noise_dim)).to(device)
+
+# Build result directory
+fake_dir = "images/fake"
+if not os.path.exists(fake_dir):
+    os.makedirs(fake_dir)
+real_dir = "images/real"
+if not os.path.exists(real_dir):
+    os.makedirs(real_dir)
+
+# Start training
+step = 0
+start_time = time.time()
+real_plot = next(iter(loader))[0]
+print('Start training: epoch={}, batch_size={}, lr={}, k={}, noise_dim={}, img_dim={}, device={}'\
+                .format(num_epochs, batch_size, lr, k, noise_dim, img_dim, device))
+for epoch in range(num_epochs):
+
+    # Sample images
+    with torch.no_grad():
+        fake = gen(fixed_noise).reshape(-1, 1, 28, 28)
+        data = real_plot.reshape(-1, 1, 28, 28)
+        img_grid_fake = torchvision.utils.make_grid(fake, normalize=True)
+        img_grid_real = torchvision.utils.make_grid(data, normalize=True)
+                
+        torchvision.utils.save_image(img_grid_fake, os.path.join(fake_dir, "{}.png".format(step)))
+        torchvision.utils.save_image(img_grid_real, os.path.join(real_dir, "{}.png".format(step)))      
+        step += 1
+
+    # Train for an epoch
+    for batch_id, (real, _) in tqdm(enumerate(loader), ascii=True, desc='Epoch {}/{}'\
+                                            .format(epoch+1, num_epochs),total=len(loader)):
+        
+        # Train Discriminator: max log(D(x)) + log(1 - D(G(z)))
+        for _ in range(k):
+            z = torch.randn(batch_size, noise_dim).to(device)
+            fake = gen(z)
+            flat_real = real.view(batch_size, img_dim).to(device)
+            disc_real = disc(flat_real).view(-1)
+            disc_fake = disc(fake).view(-1)
+            loss_real = criterion(disc_real, torch.ones_like(disc_real))
+            loss_fake = criterion(disc_fake, torch.zeros_like(disc_fake))
+            loss_D = (loss_real + loss_fake) / batch_size
+            disc.zero_grad()
+            loss_D.backward()
+            opt_disc.step()
+        
+        # Train Generator: min log(1 - D(G(z))) <-> max log(D(G(z))
+        z = torch.randn(batch_size, noise_dim).to(device)
+        fake = gen(z)
+        disc_fake = disc(fake).view(-1)
+        loss_G = criterion(disc_fake, torch.ones_like(disc_fake)) / batch_size
+        gen.zero_grad()
+        loss_G.backward()
+        opt_gen.step()
+        
+    # Evaluate after one epoch
+    print("loss D={:.4f}, loss G={:.4f}, time={:.2f}".format(loss_D,loss_G,time.time()-start_time))
+    writer.add_scalar('Loss/Discriminator', loss_D, epoch)
+    writer.add_scalar('Loss/Generator', loss_G, epoch)
+
+print('Training finished: time={:.2f}, final loss D={:.4f}, final loss G={:.4f}'\
+                    .format(time.time()-start_time, loss_D, loss_G))
