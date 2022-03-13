@@ -3,6 +3,15 @@ This is the repository that holds my implementation for deep learning models.
 
 Note that this is mainly for educational purposes, so it only contains the minimum code for each model. As can be expected, the hyperparameters are not super optimized and the datasets used are the most accessible(smallest) ones.
 
+##### Implemented :satisfied:
+
+- Generative Adversarial Networks: [GANs](#GANs), [cGANs](#cGANs)
+- Convolutional Neural Networks:
+- Transformers: 
+
+##### To be implemented :monocle_face:	
+gMLP, ResNet, ViT, StyleGan, CR-GAN, DC-GAN, cDC-GAN
+
 ## Quick start
 To set up the right environment, run the following
 ```
@@ -18,7 +27,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
 
 
 ## Implemented models
-- <i>Generative Adversarial Networks (GANs)</i>
+- <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
   - paper: https://arxiv.org/abs/1406.2661, 2014
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
   - generated images from MNIST and Fashion-MNIST
@@ -30,7 +39,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
   <img src="assets/GAN_49_fashion.png" width="300"></p>
   
   
-- <i>Conditional Generative Adversarial Networks (cGANs)</i>
+- <i>Conditional Generative Adversarial Networks (cGANs)</i><a id="cGANs">
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
   - generated images from MNIST and Fashion-MNIST
@@ -40,12 +49,3 @@ Specific instructions will be provided in the "Implemented models" section, if n
   <p align="center"><img width="300" src="assets/cGAN_fashion.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="300" src="assets/cGAN_49_fashion.png"></p>
-  
-## To be implemented
-- gMLP
-- ResNet
-- ViT
-- StyleGan
-- CR-GAN
-- DC-GAN
-- cDC-GAN
