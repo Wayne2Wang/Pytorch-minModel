@@ -40,3 +40,6 @@ Specific instructions will be provided in the "Implemented models" section, if n
 - ResNet
 - ViT
 - StyleGan
+- CR-GAN
+- DC-GAN
+- cDC-GAN
