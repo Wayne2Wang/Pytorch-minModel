@@ -6,8 +6,9 @@ Note that this is mainly for educational purposes, so it only contains the minim
 ##### Implemented :satisfied:
 
 - Generative Adversarial Networks: [GANs](#GANs), [cGANs](#cGANs)
-- Convolutional Neural Networks:
-- Transformers: 
+- MLP-like architectures: TODO
+- Convolutional Neural Networks: TODO
+- Transformers: TODO
 
 ##### To be implemented :monocle_face:	
 gMLP, ResNet, ViT, StyleGan, CR-GAN, DC-GAN, cDC-GAN
