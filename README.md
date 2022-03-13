@@ -21,20 +21,26 @@ Specific instructions will be provided in the "Implemented models" section, if n
 - <i>Generative Adversarial Networks (GANs)</i>
   - paper: https://arxiv.org/abs/1406.2661, 2014
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
-  - generated images on MNIST
+  - generated images from MNIST and Fashion-MNIST
   <p align="center"><img src="assets/gan.gif" width="300">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="assets/GAN_49.png" width="300"></p>
+    <p align="center"><img src="assets/GAN_fashion.gif" width="300">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/GAN_49_fashion.png" width="300"></p>
   
   
 - <i>Conditional Generative Adversarial Networks (cGANs)</i>
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
-  - generated images on MNIST
-  <p align="center"><img width="350" src="assets/cGAN.gif">
+  - generated images from MNIST and Fashion-MNIST
+  <p align="center"><img width="300" src="assets/cGAN.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="350" src="assets/cGAN_49.png"></p>
-
+  <img width="300" src="assets/cGAN_49.png"></p>
+  <p align="center"><img width="300" src="assets/cGAN_fashion.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="300" src="assets/cGAN_49_fashion.png"></p>
+  
 ## To be implemented
 - gMLP
 - ResNet
