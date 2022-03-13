@@ -35,7 +35,7 @@ class Generator(nn.Module):
         self.fc1 = nn.Linear(800, 800)
         self.fc2 = nn.Linear(800, img_dim)
         self.relu = nn.ReLU()#nn.LeakyReLU(0.01)
-        self.sigmoid = nn.Sigmoid()
+        self.sigmoid = nn.Tanh()
         self.dropout = nn.Dropout(0.2)
     
     def forward(self, z, y):

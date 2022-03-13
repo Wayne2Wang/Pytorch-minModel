@@ -41,7 +41,7 @@ transforms = transforms.Compose(
 
 
 # Load dataset
-dataset = datasets.MNIST(root="../../datasets/", transform=transforms, download=True)
+dataset = datasets.MNIST(root="../../datasets/", transform=transforms, download=True) #FashionMNIST
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, drop_last=True)
 
 # Initialize model and optimizer
