@@ -3,12 +3,15 @@ This is the repository that holds my implementation for deep learning models.
 
 Note that this is mainly for educational purposes, so it only contains the minimum code for each model. As can be expected, the hyperparameters are not super optimized and the datasets used are the most accessible(smallest) ones.
 
-##### Implemented :satisfied:
+##### Implemented :satisfied: 
+
+Please refer to [this table](#training) for training details
 
 - Generative Adversarial Networks: [GANs](#GANs), [cGANs](#cGANs)
 - MLP-like architectures: TODO
-- Convolutional Neural Networks: TODO
+- Convolutional Neural Networks: [U-net](#unet)
 - Transformers: TODO
+
 
 ##### To be implemented :monocle_face:	
 gMLP, ResNet, ViT, StyleGan, CR-GAN, DC-GAN, cDC-GAN
@@ -28,10 +31,19 @@ Specific instructions will be provided in the "Implemented models" section, if n
 
 
 ## Implemented models
+
+<a id="training">
+  
+| Model     | Trainable params       | Total size(MB)  | Training time(per epoch) | Dataset             | Batch size | GPU                  |
+| :-------: | :--------------------: | :-------------: | :----------------------: | :-----------------: | :--------: | :------------------: |
+| GAN(G+D)  | 566,273 + 298,640      | 2.19 + 1.17     | 10 seconds               | MNIST               | 128        | single NVIDIA 1070ti |
+| cGAN(G+D) | 1,131,201 + 1,331,584  | 4.39 + 5.12     | 13 seconds               | MNIST               | 100        | single NVIDIA 1070ti |
+| U-net     | 31,033,955             | 4475.55         | 15 minutes               | Cityscapes          | 2          | single NVIDIA 1070ti |
+
+
 - <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
   - paper: https://arxiv.org/abs/1406.2661, 2014
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
-  - with batch size of 128, the expected training time per epoch on a single NVIDIA 1070ti GPU is ~10 seconds
   - generated images from MNIST and Fashion-MNIST
   <p align="center"><img src="assets/gan.gif" width="300">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,7 +56,6 @@ Specific instructions will be provided in the "Implemented models" section, if n
 - <i>Conditional Generative Adversarial Networks (cGANs)</i><a id="cGANs">
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
-  - with batch size of 100, the expected training time per epoch on a single NVIDIA 1070ti GPU is ~13 seconds
   - generated images from MNIST and Fashion-MNIST
   <p align="center"><img width="300" src="assets/cGAN.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -52,3 +63,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
   <p align="center"><img width="300" src="assets/cGAN_fashion.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="300" src="assets/cGAN_49_fashion.png"></p>
+
+- <i>U-net</i><a id="unet">
+  - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
+  - author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
