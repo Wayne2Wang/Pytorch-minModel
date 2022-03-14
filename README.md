@@ -31,6 +31,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
 - <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
   - paper: https://arxiv.org/abs/1406.2661, 2014
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
+  - with batch size of 128, the expected training time per epoch on a single NVIDIA 1070ti GPU is ~10 seconds
   - generated images from MNIST and Fashion-MNIST
   <p align="center"><img src="assets/gan.gif" width="300">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -43,6 +44,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
 - <i>Conditional Generative Adversarial Networks (cGANs)</i><a id="cGANs">
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
+  - with batch size of 100, the expected training time per epoch on a single NVIDIA 1070ti GPU is ~13 seconds
   - generated images from MNIST and Fashion-MNIST
   <p align="center"><img width="300" src="assets/cGAN.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
