@@ -34,8 +34,9 @@ def save_img(img, title, dir):
     plt.savefig(os.path.join(dir, title+'.png'), bbox_inches='tight',pad_inches = 0)
     plt.close()
 
-def pred2color(pred):
-    pred = torch.argmax(pred, dim=0)
+def pred2color(pred, integer=False):
+    if not integer:
+        pred = torch.argmax(pred, dim=0)
     color = torch.zeros(3, pred.shape[0], pred.shape[1])
     for i in range(pred.shape[0]):
         for j in range(pred.shape[1]):
@@ -83,15 +84,17 @@ opt = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
 scheduler = optim.lr_scheduler.StepLR(opt, step_size=lr_step_size, gamma=lr_gamma)
 criterion = nn.CrossEntropyLoss()
 
-# The image to save after each epoch
-sample_img = dataset[0][0].unsqueeze(0).to(device)
-
 # Build result directory
 writer = SummaryWriter("logs/")
 save_img_dir = "images/sample"
 if not os.path.exists(save_img_dir):
     os.makedirs(save_img_dir)
 path_to_model = 'logs/checkpoints/'
+
+# The image to evaluate after each epoch, save it and its label to the image folder (label needs to be unnormalized)
+sample_img = dataset[0][0].unsqueeze(0).to(device)
+save_img(dataset[0][0], 'RGB Image', save_img_dir)
+save_img(pred2color((dataset[0][1]*255).to(torch.long).squeeze(0), integer=True), 'Gound Truth', save_img_dir)
 
 
 # Start training
