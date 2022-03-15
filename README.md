@@ -3,6 +3,19 @@ This is the repository that holds my implementation for deep learning models.
 
 Note that this is mainly for educational purposes, so it only contains the minimum code for each model. As can be expected, the hyperparameters are not super optimized and the datasets used are the most accessible(smallest) ones.
 
+##### Implemented :satisfied: 
+
+Please refer to [this table](#training) for training details
+
+- Generative Adversarial Networks: [GANs](#GANs), [cGANs](#cGANs)
+- MLP-like architectures: TODO
+- Convolutional Neural Networks: [U-net](#unet)
+- Transformers: TODO
+
+
+##### To be implemented :monocle_face:	
+gMLP, ResNet, ViT, StyleGan, CR-GAN, DC-GAN, cDC-GAN
+
 ## Quick start
 To set up the right environment, run the following
 ```
@@ -18,28 +31,39 @@ Specific instructions will be provided in the "Implemented models" section, if n
 
 
 ## Implemented models
-- <i>Generative Adversarial Networks (GANs)</i>
+
+<a id="training">
+  
+| Model     | Trainable params       | Total size(MB)  | Training time(per epoch) | Dataset             | Batch size | GPU                  |
+| :-------: | :--------------------: | :-------------: | :----------------------: | :-----------------: | :--------: | :------------------: |
+| GAN(G+D)  | 566,273 + 298,640      | 2.19 + 1.17     | 10 seconds               | MNIST               | 128        | single NVIDIA 1070ti |
+| cGAN(G+D) | 1,131,201 + 1,331,584  | 4.39 + 5.12     | 13 seconds               | MNIST               | 100        | single NVIDIA 1070ti |
+| U-net     | 31,033,955             | 4475.55         | 15 minutes               | Cityscapes          | 2          | single NVIDIA 1070ti |
+
+
+- <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
   - paper: https://arxiv.org/abs/1406.2661, 2014
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
-  - generated images on MNIST
+  - generated images from MNIST and Fashion-MNIST
   <p align="center"><img src="assets/gan.gif" width="300">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="assets/GAN_49.png" width="300"></p>
+    <p align="center"><img src="assets/GAN_fashion.gif" width="300">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/GAN_49_fashion.png" width="300"></p>
   
   
-- <i>Conditional Generative Adversarial Networks (cGANs)</i>
+- <i>Conditional Generative Adversarial Networks (cGANs)</i><a id="cGANs">
   - paper: https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
-  - generated images on MNIST
-  <p align="center"><img width="350" src="assets/cGAN.gif">
+  - generated images from MNIST and Fashion-MNIST
+  <p align="center"><img width="300" src="assets/cGAN.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="350" src="assets/cGAN_49.png"></p>
+  <img width="300" src="assets/cGAN_49.png"></p>
+  <p align="center"><img width="300" src="assets/cGAN_fashion.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="300" src="assets/cGAN_49_fashion.png"></p>
 
-## To be implemented
-- gMLP
-- ResNet
-- ViT
-- StyleGan
-- CR-GAN
-- DC-GAN
-- cDC-GAN
+- <i>U-net</i><a id="unet">
+  - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
+  - author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
