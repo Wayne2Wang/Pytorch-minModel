@@ -16,6 +16,7 @@ from torchvision.transforms import InterpolationMode
 from torch.nn.functional import one_hot
 
 from unet import Unet
+import checkpoint
 
 PALETTE = [(  0,  0,  0),(  0,  0,  0),(  0,  0,  0),(  0,  0,  0),(  0,  0,  0),
            (111, 74,  0),( 81,  0, 81),(128, 64,128),(244, 35,232),(250,170,160),
@@ -45,7 +46,10 @@ def pred2color(pred):
 
 # Hyper-parameters
 device = "cuda" if torch.cuda.is_available() else "cpu"
-lr = 3e-4
+lr = 1e-3
+lr_step_size = 10
+lr_gamma = 0.2
+weight_decay = 0.01
 batch_size = 2
 num_epochs = 50
 img_height, img_width, img_channels = 1024//2, 2048//2, 3
@@ -73,7 +77,10 @@ loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, drop_last=Fal
 # Initialize model and optimizer
 model = Unet(img_channels, label_dim).to(device)
 #summary(model, (3,1024,512), device=device)
-opt = optim.Adam(model.parameters(), lr=lr)
+
+# Initialize optimizer, lr scheduler, and loss function
+opt = optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
+scheduler = optim.lr_scheduler.StepLR(opt, step_size=lr_step_size, gamma=lr_gamma)
 criterion = nn.CrossEntropyLoss()
 
 # The image to save after each epoch
@@ -84,14 +91,14 @@ writer = SummaryWriter("logs/")
 save_img_dir = "images/sample"
 if not os.path.exists(save_img_dir):
     os.makedirs(save_img_dir)
-path_to_model = 'logs\\checkpoints\\'
-if not os.path.exists(path_to_model):
-    os.makedirs(path_to_model)
+path_to_model = 'logs/checkpoints/'
+
 
 # Start training
 start_time = time.time()
-print('Start training: epoch={}, batch_size={}, lr={}, img_dim={}, label_dim={}, device={}'\
-                .format(num_epochs, batch_size, lr, img_dim_str, label_dim_str, device))
+print('Start training: epoch={}, batch_size={}, lr={}, lr_step_size={}, lr_gamma={},\n\
+                weight_decay={}, img_dim={}, label_dim={}, device={}'\
+                .format(num_epochs, batch_size, lr,lr_step_size,lr_gamma, weight_decay, img_dim_str, label_dim_str, device))
 for epoch in range(num_epochs):
 
     # Sample images
@@ -102,6 +109,7 @@ for epoch in range(num_epochs):
     # Train for an epoch
     for batch_id, (img, label) in tqdm(enumerate(loader), ascii=True, desc='Epoch {}/{}'\
                                             .format(epoch+1, num_epochs),total=len(loader)):
+        
         # Move to GPU if available
         img = img.to(device)
         label = (label*255).to(torch.long).squeeze(1).to(device)
@@ -115,16 +123,15 @@ for epoch in range(num_epochs):
         loss.backward()
         opt.step()
     
+    # Step lr scheduler
+    scheduler.step()
+
     # Evaluate after one epoch
     print("loss={:.4f}, time={:.2f}".format(loss,time.time()-start_time))
     writer.add_scalar('Loss/train', loss, epoch)
 
     # Save model for every epoch
-    torch.save({'model_state_dict': model.state_dict(), 
-                'epochs': epoch, 
-                'loss':loss.item(), 
-                'img_dim': img_dim_str, 
-                'label_dim': label_dim_str}, path_to_model+'unet_{}.pt'.format(epoch))
+    checkpoint.save_checkpoint(path_to_model, 'unet_{}.pt'.format(epoch), model, epoch, opt, scheduler, loss.item())
 
 print('Training finished: time={:.2f}, final loss={:.4f}'\
                     .format(time.time()-start_time, loss))
