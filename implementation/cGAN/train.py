@@ -13,6 +13,7 @@ from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 from torch.utils.tensorboard import SummaryWriter  # to print to tensorboard
 from torch.nn.functional import one_hot
+from torchsummary import summary
 
 from cgan import Discriminator, Generator
 
@@ -50,6 +51,8 @@ gen = Generator(noise_dim, img_dim, label_dim).to(device)
 opt_disc = optim.Adam(disc.parameters(), lr=lr)
 opt_gen = optim.Adam(gen.parameters(), lr=lr)
 criterion = nn.BCELoss()
+#summary(disc, [(img_dim,),(label_dim,)], device=device)
+#summary(gen, [(noise_dim,),(label_dim,)], device=device)
 
 # The fixed noise and labels to evaluate
 fixed_noise = torch.randn((batch_size, noise_dim)).to(device)
