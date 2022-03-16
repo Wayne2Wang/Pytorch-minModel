@@ -46,10 +46,10 @@ Specific instructions will be provided in the "Implemented models" section, if n
   - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
   - generated images from MNIST and Fashion-MNIST
   <p align="center"><img src="assets/gan.gif" width="300">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="assets/GAN_49.png" width="300"></p>
     <p align="center"><img src="assets/GAN_fashion.gif" width="300">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="assets/GAN_49_fashion.png" width="300"></p>
   
   
@@ -67,5 +67,13 @@ Specific instructions will be provided in the "Implemented models" section, if n
 - <i>U-net</i><a id="unet">
   - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
   - author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
-  - semantic segmentation on Cityscape (not fully trained due to resource constraints)
-  <p align="center"><img width="300" src="assets/unet.gif"></p>
+  - semantic segmentation on Cityscape (not fully trained due to resource constraints unfortunately)
+  - The input RGB image has larger spatial size than the output mask due to the unpadded convolution in Unets
+   <p align="center">
+    <img width="350" src="assets/unet_rgb.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="350" src="assets/unet_gt.png">
+  </p>
+  <p align="center">
+    <img width="350" src="assets/unet.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="350" src="assets/unet_49.png">
+  </p>
