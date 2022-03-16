@@ -67,3 +67,5 @@ Specific instructions will be provided in the "Implemented models" section, if n
 - <i>U-net</i><a id="unet">
   - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
   - author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
+  - semantic segmentation on Cityscape (not fully trained due to resource constraints)
+  <p align="center"><img width="300" src="assets/unet.gif"></p>
