@@ -47,7 +47,7 @@ def pred2color(pred, integer=False):
 
 # Hyper-parameters
 device = "cuda" if torch.cuda.is_available() else "cpu"
-lr = 1e-3
+lr = 3e-4
 lr_step_size = 10
 lr_gamma = 0.2
 weight_decay = 0.01
