@@ -78,10 +78,10 @@ Specific instructions will be provided in the "Implemented models" section, if n
   - semantic segmentation on Cityscape (not fully trained due to resource constraints unfortunately)
   - The input RGB image has larger spatial size than the output mask due to the unpadded convolution in Unets
    <p align="center">
-    <img width="350" src="assets/unet_rgb.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img width="350" src="assets/unet_gt.png">
+    <img width="300" src="assets/unet_rgb.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/unet_gt.png">
   </p>
   <p align="center">
-    <img width="350" src="assets/unet.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img width="350" src="assets/unet_49.png">
+    <img width="300" src="assets/unet.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/unet_49.png">
   </p>
