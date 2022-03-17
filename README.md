@@ -69,7 +69,12 @@ Specific instructions will be provided in the "Implemented models" section, if n
    - paper: https://arxiv.org/abs/1511.06434, 2015
    - author(s): Alec Radford, Luke Metz, Soumith Chintala
    - generated images from MNIST and Fashion-MNIST
-  
+  <p align="center"><img width="300" src="assets/DCGAN.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="300" src="assets/DCGAN_49.png"></p>
+  <p align="center"><img width="300" src="assets/DCGAN_fashion.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="300" src="assets/DCGAN_49_fashion.png"></p>
   
   
 - <i>U-net</i><a id="unet">
