@@ -7,14 +7,14 @@ Note that this is mainly for educational purposes, so it only contains the minim
 
 Please refer to [this table](#training) for training details
 
-- Generative Adversarial Networks: [GANs](#GANs), [cGANs](#cGANs)
+- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs)
 - MLP-like architectures: TODO
 - Convolutional Neural Networks: [U-net](#unet)
 - Transformers: TODO
 
 
 ##### To be implemented :monocle_face:	
-gMLP, ResNet, ViT, StyleGan, CR-GAN, DC-GAN, cDC-GAN
+gMLP, ResNet, ViT, StyleGan, CR-GAN, cDC-GAN
 
 ## Quick start
 To set up the right environment, run the following
@@ -65,6 +65,13 @@ Specific instructions will be provided in the "Implemented models" section, if n
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="300" src="assets/cGAN_49_fashion.png"></p>
 
+ - <i>Deep Convolutional Generative Adversarial Networks (DCGANs)</i><a id="DCGANs">
+   - paper: https://arxiv.org/abs/1511.06434, 2015
+   - author(s): Alec Radford, Luke Metz, Soumith Chintala
+   - generated images from MNIST and Fashion-MNIST
+  
+  
+  
 - <i>U-net</i><a id="unet">
   - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
   - author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
