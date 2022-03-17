@@ -7,14 +7,14 @@ Note that this is mainly for educational purposes, so it only contains the minim
 
 Please refer to [this table](#training) for training details
 
-- Generative Adversarial Networks: [GANs](#GANs), [cGANs](#cGANs)
+- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs)
 - MLP-like architectures: TODO
 - Convolutional Neural Networks: [U-net](#unet)
 - Transformers: TODO
 
 
 ##### To be implemented :monocle_face:	
-gMLP, ResNet, ViT, StyleGan, CR-GAN, DC-GAN, cDC-GAN
+gMLP, ResNet, ViT, StyleGan, CR-GAN, cDC-GAN
 
 ## Quick start
 To set up the right environment, run the following
@@ -38,6 +38,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
 | :-------: | :--------------------: | :-------------: | :----------------------: | :-----------------: | :--------: | :------------------: |
 | GAN(G+D)  | 566,273 + 298,640      | 2.19 + 1.17     | 10 seconds               | MNIST               | 128        | single NVIDIA 1070ti |
 | cGAN(G+D) | 1,131,201 + 1,331,584  | 4.39 + 5.12     | 13 seconds               | MNIST               | 100        | single NVIDIA 1070ti |
+| DCGAN(G+D)| 1,811,329 + 266,049    | 9.00 + 1.46     | 1 mintutes               | MNIST               | 128        | single NVIDIA 1070ti |
 | U-net     | 31,033,955             | 4475.55         | 15 minutes               | Cityscapes          | 2          | single NVIDIA 1070ti |
 
 
@@ -64,16 +65,23 @@ Specific instructions will be provided in the "Implemented models" section, if n
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="300" src="assets/cGAN_49_fashion.png"></p>
 
+ - <i>Deep Convolutional Generative Adversarial Networks (DCGANs)</i><a id="DCGANs">
+   - paper: https://arxiv.org/abs/1511.06434, 2015
+   - author(s): Alec Radford, Luke Metz, Soumith Chintala
+   - generated images from MNIST and Fashion-MNIST
+  
+  
+  
 - <i>U-net</i><a id="unet">
   - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
   - author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
   - semantic segmentation on Cityscape (not fully trained due to resource constraints unfortunately)
   - The input RGB image has larger spatial size than the output mask due to the unpadded convolution in Unets
    <p align="center">
-    <img width="350" src="assets/unet_rgb.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img width="350" src="assets/unet_gt.png">
+    <img width="300" src="assets/unet_rgb.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/unet_gt.png">
   </p>
   <p align="center">
-    <img width="350" src="assets/unet.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img width="350" src="assets/unet_49.png">
+    <img width="300" src="assets/unet.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/unet_49.png">
   </p>
