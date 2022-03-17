@@ -48,8 +48,8 @@ gen = Generator(noise_dim, img_dim).to(device)
 opt_disc = optim.Adam(disc.parameters(), lr=lr)
 opt_gen = optim.Adam(gen.parameters(), lr=lr)
 criterion = nn.BCELoss()
-#summary(disc, (img_dim,), device=device)
-#summary(gen, (noise_dim,), device=device)
+# summary(disc, (1,28,28), device=device)
+# summary(gen, (noise_dim,), device=device)
 
 
 # The fixed noise to evaluate
