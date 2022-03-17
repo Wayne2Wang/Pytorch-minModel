@@ -38,6 +38,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
 | :-------: | :--------------------: | :-------------: | :----------------------: | :-----------------: | :--------: | :------------------: |
 | GAN(G+D)  | 566,273 + 298,640      | 2.19 + 1.17     | 10 seconds               | MNIST               | 128        | single NVIDIA 1070ti |
 | cGAN(G+D) | 1,131,201 + 1,331,584  | 4.39 + 5.12     | 13 seconds               | MNIST               | 100        | single NVIDIA 1070ti |
+| DCGAN(G+D)| 1,811,329 + 266,049    | 9.00 + 1.46     | 1 mintutes               | MNIST               | 128        | single NVIDIA 1070ti |
 | U-net     | 31,033,955             | 4475.55         | 15 minutes               | Cityscapes          | 2          | single NVIDIA 1070ti |
 
 
