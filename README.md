@@ -66,16 +66,17 @@ Specific instructions will be provided in the "Implemented models" section, if n
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="300" src="assets/cGAN_49_fashion.png"></p>
 
+  
  - <i>Deep Convolutional Generative Adversarial Networks (DCGANs)</i><a id="DCGANs">
    - paper: https://arxiv.org/abs/1511.06434, 2015
    - author(s): Alec Radford, Luke Metz, Soumith Chintala
    - generated images from MNIST and Fashion-MNIST
-  <p align="center"><img width="300" src="assets/DCGAN.gif">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="300" src="assets/DCGAN_49.png"></p>
-  <p align="center"><img width="300" src="assets/DCGAN_fashion.gif">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="300" src="assets/DCGAN_49_fashion.png"></p>
+   <p align="center"><img width="300" src="assets/DCGAN.gif">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img width="300" src="assets/DCGAN_49.png"></p>
+   <p align="center"><img width="300" src="assets/DCGAN_fashion.gif">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img width="300" src="assets/DCGAN_49_fashion.png"></p>
   
  
  - <i>Consistency Regularization for Generative Adversarial Networks (CRGANs)</i><a id="CRGANs">
@@ -88,6 +89,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
   <p align="center"><img width="300" src="assets/CRGAN_fashion.gif">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="300" src="assets/CRGAN_49_fashion.png"></p>
+  
   
 - <i>U-net</i><a id="unet">
   - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
