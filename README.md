@@ -83,12 +83,12 @@ Specific instructions will be provided in the "Implemented models" section, if n
    - paper: https://arxiv.org/abs/1910.12027, 2019
    - author(s): Han Zhang, Zizhao Zhang, Augustus Odena, Honglak Lee
    - generated images from MNIST and Fashion-MNIST
-  <p align="center"><img width="300" src="assets/CRGAN.gif">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="300" src="assets/CRGAN_49.png"></p>
-  <p align="center"><img width="300" src="assets/CRGAN_fashion.gif">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img width="300" src="assets/CRGAN_49_fashion.png"></p>
+   <p align="center"><img width="300" src="assets/CRGAN.gif">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img width="300" src="assets/CRGAN_49.png"></p>
+   <p align="center"><img width="300" src="assets/CRGAN_fashion.gif">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img width="300" src="assets/CRGAN_49_fashion.png"></p>
   
   
 - <i>U-net</i><a id="unet">
