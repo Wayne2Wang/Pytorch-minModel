@@ -7,7 +7,7 @@ Note that this is mainly for educational purposes, so it only contains the minim
 
 Please refer to [this table](#training) for training details
 
-- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs)
+- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs), [CRGAN](#CRGANs)
 - MLP-like architectures: TODO
 - Convolutional Neural Networks: [U-net](#unet)
 - Transformers: TODO
@@ -36,10 +36,11 @@ Specific instructions will be provided in the "Implemented models" section, if n
   
 | Model     | Trainable params       | Total size(MB)  | Training time(per epoch) | Dataset             | Batch size | GPU                  |
 | :-------: | :--------------------: | :-------------: | :----------------------: | :-----------------: | :--------: | :------------------: |
-| GAN(G+D)  | 566,273 + 298,640      | 2.19 + 1.17     | 10 seconds               | MNIST               | 128        | single NVIDIA 1070ti |
-| cGAN(G+D) | 1,131,201 + 1,331,584  | 4.39 + 5.12     | 13 seconds               | MNIST               | 100        | single NVIDIA 1070ti |
-| DCGAN(G+D)| 1,811,329 + 266,049    | 9.00 + 1.46     | 1 mintutes               | MNIST               | 128        | single NVIDIA 1070ti |
-| U-net     | 31,033,955             | 4475.55         | 15 minutes               | Cityscapes          | 2          | single NVIDIA 1070ti |
+| GAN(G+D)  | 566,273 + 298,640      | 2.19 + 1.17     | 10s                      | MNIST               | 128        | single NVIDIA 1070ti |
+| cGAN(G+D) | 1,131,201 + 1,331,584  | 4.39 + 5.12     | 13sec                    | MNIST               | 100        | single NVIDIA 1070ti |
+| DCGAN(G+D)| 1,811,329 + 266,049    | 9.00 + 1.46     | 1min                     | MNIST               | 128        | single NVIDIA 1070ti |
+| CRGAN(G+D)| 1,811,329 + 266,049    | 9.00 + 1.46     | 1min 5sec               | MNIST               | 128        | single NVIDIA 1070ti |
+| U-net     | 31,033,955             | 4475.55         | 15min                    | Cityscapes          | 2          | single NVIDIA 1070ti |
 
 
 - <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
@@ -49,7 +50,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
   <p align="center"><img src="assets/gan.gif" width="300">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="assets/GAN_49.png" width="300"></p>
-    <p align="center"><img src="assets/GAN_fashion.gif" width="300">
+  <p align="center"><img src="assets/GAN_fashion.gif" width="300">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="assets/GAN_49_fashion.png" width="300"></p>
   
@@ -76,6 +77,17 @@ Specific instructions will be provided in the "Implemented models" section, if n
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img width="300" src="assets/DCGAN_49_fashion.png"></p>
   
+ 
+ - <i>Consistency Regularization for Generative Adversarial Networks (CRGANs)</i><a id="CRGANs">
+   - paper: https://arxiv.org/abs/1910.12027, 2019
+   - author(s): Han Zhang, Zizhao Zhang, Augustus Odena, Honglak Lee
+   - generated images from MNIST and Fashion-MNIST
+  <p align="center"><img width="300" src="assets/CRGAN.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="300" src="assets/CRGAN_49.png"></p>
+  <p align="center"><img width="300" src="assets/CRGAN_fashion.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img width="300" src="assets/CRGAN_49_fashion.png"></p>
   
 - <i>U-net</i><a id="unet">
   - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
