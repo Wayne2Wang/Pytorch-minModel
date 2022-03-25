@@ -74,25 +74,3 @@ class Generator(nn.Module):
             z = self.relu(self.trans_conv3(z))
             z = self.tanh(self.conv1(z))
         return z
-
-
-
-def main():
-    spatial_dim = 64
-    noise_dim = 200
-    img_c = 1
-    batch_size = 2
-    dummy_img_batch = torch.randn(batch_size,img_c,spatial_dim,spatial_dim,spatial_dim)
-    dummy_noise = torch.randn(batch_size, noise_dim)
-    
-    gen = Generator(noise_dim, img_c, batch_norm=True)
-    disc = Discriminator(img_c, batch_norm=True)
-    fake = gen(dummy_noise)
-    score = disc(fake)
-    print('Noise batch shape {}'.format(dummy_noise.shape))
-    print('Image batch shape {}'.format(dummy_img_batch.shape))
-    print('Generator shape: {}'.format(fake.shape))
-    print('Discriminator shape: {}'.format(score.shape))
-
-if __name__ == '__main__':
-    main()
