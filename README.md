@@ -34,13 +34,14 @@ Specific instructions will be provided in the "Implemented models" section, if n
 
 <a id="training">
   
-| Model     | Trainable params       | Total size(MB)  | Training time(per epoch) | Dataset             | Batch size | GPU                  |
-| :-------: | :--------------------: | :-------------: | :----------------------: | :-----------------: | :--------: | :------------------: |
-| GAN(G+D)  | 566,273 + 298,640      | 2.19 + 1.17     | 10s                      | MNIST               | 128        | single NVIDIA 1070ti |
-| cGAN(G+D) | 1,131,201 + 1,331,584  | 4.39 + 5.12     | 13sec                    | MNIST               | 100        | single NVIDIA 1070ti |
-| DCGAN(G+D)| 1,811,329 + 266,049    | 9.00 + 1.46     | 1min                     | MNIST               | 128        | single NVIDIA 1070ti |
-| CRGAN(G+D)| 1,811,329 + 266,049    | 9.00 + 1.46     | 1min 5sec               | MNIST               | 128        | single NVIDIA 1070ti |
-| U-net     | 31,033,955             | 4475.55         | 15min                    | Cityscapes          | 2          | single NVIDIA 1070ti |
+| Model          | Trainable params         | Total size(MB)  | Training time(per epoch) | Dataset             | Batch size | GPU                  |
+| :------------: | :----------------------: | :-------------: | :----------------------: | :-----------------: | :--------: | :------------------: |
+| GAN(G+D)       | 566,273 + 298,640        | 2.19 + 1.17     | 10s                      | MNIST               | 128        | 1x NVIDIA 1070ti     |
+| cGAN(G+D)      | 1,131,201 + 1,331,584    | 4.39 + 5.12     | 13sec                    | MNIST               | 100        | 1x NVIDIA 1070ti     |
+| DCGAN(G+D)     | 1,811,329 + 266,049      | 9.00 + 1.46     | 1min                     | MNIST               | 128        | 1x NVIDIA 1070ti     |
+| CRGAN(G+D)     | 1,811,329 + 266,049      | 9.00 + 1.46     | 1min 5sec                | MNIST               | 128        | 1x NVIDIA 1070ti     |
+| 3D-DCGAN(G+D)  | 53,772,641 + 2,643,265   | 336.13 + 18.96  | 8min                     | 64^3 cube ShapeNet  | 16         | 1x NVIDIA 1070ti     |
+| U-net          | 31,033,955               | 4475.55         | 15min                    | Cityscapes          | 2          | 1x NVIDIA 1070ti     |
 
 
 - <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
