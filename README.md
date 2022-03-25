@@ -14,7 +14,7 @@ Please refer to [this table](#training) for training details
 
 
 ##### To be implemented :monocle_face:	
-gMLP, ResNet, ViT, StyleGan, CR-GAN, cDC-GAN
+gMLP, ResNet, ViT, StyleGan, WGAN, SNGAN, Unet++
 
 ## Quick start
 To set up the right environment, run the following
