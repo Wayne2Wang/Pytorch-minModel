@@ -7,7 +7,7 @@ Note that this is mainly for educational purposes, so it only contains the minim
 
 Please refer to [this table](#training) for training details
 
-- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs), [CRGAN](#CRGANs)
+- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs), [CRGAN](#CRGANs), [3D-DCGAN](#3DDCGANs)
 - MLP-like architectures: TODO
 - Convolutional Neural Networks: [U-net](#unet)
 - Transformers: TODO
@@ -44,8 +44,8 @@ Specific instructions will be provided in the "Implemented models" section, if n
 
 
 - <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
-  - paper: https://arxiv.org/abs/1406.2661, 2014
-  - author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
+  - Paper: Generative Adversarial Nets, https://arxiv.org/abs/1406.2661, 2014
+  - Author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
   - generated images from MNIST and Fashion-MNIST
   <p align="center"><img src="assets/gan.gif" width="300">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -56,7 +56,7 @@ Specific instructions will be provided in the "Implemented models" section, if n
   
   
 - <i>Conditional Generative Adversarial Networks (cGANs)</i><a id="cGANs">
-  - paper: https://arxiv.org/abs/1411.1784, 2014
+  - paper: Conditional Generative Adversarial Networks, https://arxiv.org/abs/1411.1784, 2014
   - author(s): Mehdi Mirza, Simon Osindero
   - generated images from MNIST and Fashion-MNIST
   <p align="center"><img width="300" src="assets/cGAN.gif">
@@ -68,8 +68,8 @@ Specific instructions will be provided in the "Implemented models" section, if n
 
   
  - <i>Deep Convolutional Generative Adversarial Networks (DCGANs)</i><a id="DCGANs">
-   - paper: https://arxiv.org/abs/1511.06434, 2015
-   - author(s): Alec Radford, Luke Metz, Soumith Chintala
+   - Paper: Deep Convolutional Generative Adversarial Networks, https://arxiv.org/abs/1511.06434, 2015
+   - Author(s): Alec Radford, Luke Metz, Soumith Chintala
    - generated images from MNIST and Fashion-MNIST
    <p align="center"><img width="300" src="assets/DCGAN.gif">
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -79,10 +79,10 @@ Specific instructions will be provided in the "Implemented models" section, if n
    <img width="300" src="assets/DCGAN_49_fashion.png"></p>
   
  
- - <i>Consistency Regularization for Generative Adversarial Networks (CRGANs)</i><a id="CRGANs">
-   - paper: https://arxiv.org/abs/1910.12027, 2019
-   - author(s): Han Zhang, Zizhao Zhang, Augustus Odena, Honglak Lee
-   - generated images from MNIST and Fashion-MNIST
+ - <i>Consistency Regularized for Generative Adversarial Networks (CRGANs)</i><a id="CRGANs">
+   - Paper: Consistency Regularization for Generative Adversarial Networks, https://arxiv.org/abs/1910.12027, 2019
+   - Author(s): Han Zhang, Zizhao Zhang, Augustus Odena, Honglak Lee
+   - Generated images from MNIST and Fashion-MNIST
    <p align="center"><img width="300" src="assets/CRGAN.gif">
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <img width="300" src="assets/CRGAN_49.png"></p>
@@ -90,11 +90,26 @@ Specific instructions will be provided in the "Implemented models" section, if n
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <img width="300" src="assets/CRGAN_49_fashion.png"></p>
   
+ - <i>3D Deep Convolutional Generative Adversarial Networks (3D-DCGANs)</i><a id="3DDCGANs">
+   - Paper: Learning a Probabilistic Latent Space of Object Shapes via 3D Generative-Adversarial Modeling, https://arxiv.org/abs/1910.12027, 2017
+   - Author(s): Jiajun Wu, Chengkai Zhang, Tianfan Xue, William T. Freeman, Joshua B. Tenenbaum
+   - Many thanks to Xingchang Huang for making his dataset code publicly available, here's the [link](https://github.com/xchhuang/simple-pytorch-3dgan) to the repo
+   - To train the model: 
+     - Download the data from Xingchang's repo, 
+     - Create a "ShapeNet_Chair" folder inside the datasets folder
+     - Move the data inside the "ShapeNet_Chair" folder
+     - Run train.py
+   - Training tricks:
+     - Consistency regularization on the output
+     - Discriminator trains for 2 iterations per generator update
+     - Discriminator only updates when its accuracy is below a threshold
+   - Best shapes generated within 100 epochs
+  
   
 - <i>U-net</i><a id="unet">
-  - paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
-  - author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
-  - semantic segmentation on Cityscape (not fully trained due to resource constraints unfortunately)
+  - Paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
+  - Author(s): Olaf Ronneberger, Philipp Fischer, and Thomas Brox
+  - Semantic segmentation on Cityscape (not fully trained due to resource constraints unfortunately)
   - The input RGB image has larger spatial size than the output mask due to the unpadded convolution in Unets
    <p align="center">
     <img width="300" src="assets/unet_rgb.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
