@@ -101,11 +101,15 @@ Specific instructions will be provided in the "Implemented models" section, if n
      - Move the data inside the "ShapeNet_Chair" folder
      - Run train.py
    - Training tricks:
-     - Consistency regularization on the output
+     - Consistency regularization(CR) on the output
      - Discriminator trains for 2 iterations per generator update
      - Discriminator only updates when its accuracy is below a threshold
-   - Best shapes generated within 100 epochs
-  
+   - Best shapes generated within 100 epochs (left: CR=0; right: CR=1)
+   <p align="center">
+    <img width="300" src="assets/3DDCGAN_CR0.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/3DDCGAN_CR1.gif">
+   </p>
+
   
 - <i>U-net</i><a id="unet">
   - Paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
