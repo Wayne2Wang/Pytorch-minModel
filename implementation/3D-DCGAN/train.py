@@ -96,7 +96,7 @@ for epoch in range(num_epochs):
         
         # Train Discriminator: max log(D(x)) + log(1 - D(G(z)))
         for _ in range(k):
-            
+
             # generate sample and feed to discriminator
             z = torch.randn(batch_size, noise_dim).to(device)
             real = real.to(device)
@@ -105,16 +105,15 @@ for epoch in range(num_epochs):
             _, disc_fake = disc(fake)
             disc_real, disc_fake = disc_real.view(-1), disc_fake.view(-1)
 
-            # if discriminator acc is below threshold, calculate discriminator loss
+            # if discriminator acc is above threshold, stop gradient from discriminator loss
             d_acc_real = torch.sum(torch.sigmoid(disc_real)>0.5) / disc_real.shape[0]
             d_acc_fake = torch.sum(torch.sigmoid(disc_fake)<0.5) / disc_real.shape[0]
             d_acc = (d_acc_real + d_acc_fake) / 2
-            if d_acc < d_acc_thresh:
-                loss_real = criterion(disc_real, torch.ones_like(disc_real))
-                loss_fake = criterion(disc_fake, torch.zeros_like(disc_fake))
-                loss_D = (loss_real + loss_fake) 
-            else:
-                loss_D = 0
+            loss_real = criterion(disc_real, torch.ones_like(disc_real))
+            loss_fake = criterion(disc_fake, torch.zeros_like(disc_fake))
+            loss_Disc = (loss_real + loss_fake) 
+            if d_acc > d_acc_thresh:
+                loss_Disc = loss_Disc.detach()
 
             # CR loss
             reg_real = reg_real.to(device)
@@ -122,7 +121,7 @@ for epoch in range(num_epochs):
             loss_cr = criterion_cr(pre_act_disc_reg_real, pre_act_disc_real)
 
             # sum of both loss
-            loss_D = (loss_D + cr_lambda*loss_cr) / batch_size
+            loss_D = (loss_Disc + cr_lambda*loss_cr) / batch_size
 
             # backward and optimize
             disc.zero_grad()
