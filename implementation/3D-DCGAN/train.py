@@ -96,16 +96,25 @@ for epoch in range(num_epochs):
         
         # Train Discriminator: max log(D(x)) + log(1 - D(G(z)))
         for _ in range(k):
-            # discriminator loss
+            
+            # generate sample and feed to discriminator
             z = torch.randn(batch_size, noise_dim).to(device)
             real = real.to(device)
             fake = gen(z)
             pre_act_disc_real, disc_real = disc(real)
             _, disc_fake = disc(fake)
             disc_real, disc_fake = disc_real.view(-1), disc_fake.view(-1)
-            loss_real = criterion(disc_real, torch.ones_like(disc_real))
-            loss_fake = criterion(disc_fake, torch.zeros_like(disc_fake))
-            loss_D = (loss_real + loss_fake) 
+
+            # if discriminator acc is below threshold, calculate discriminator loss
+            d_acc_real = torch.sum(torch.sigmoid(disc_real)>0.5) / disc_real.shape[0]
+            d_acc_fake = torch.sum(torch.sigmoid(disc_fake)<0.5) / disc_real.shape[0]
+            d_acc = (d_acc_real + d_acc_fake) / 2
+            if d_acc < d_acc_thresh:
+                loss_real = criterion(disc_real, torch.ones_like(disc_real))
+                loss_fake = criterion(disc_fake, torch.zeros_like(disc_fake))
+                loss_D = (loss_real + loss_fake) 
+            else:
+                loss_D = 0
 
             # CR loss
             reg_real = reg_real.to(device)
@@ -115,16 +124,10 @@ for epoch in range(num_epochs):
             # sum of both loss
             loss_D = (loss_D + cr_lambda*loss_cr) / batch_size
 
-            # if discriminator acc is below threshold, update D
-            d_acc_real = torch.sum(torch.sigmoid(disc_real)>0.5) / disc_real.shape[0]
-            d_acc_fake = torch.sum(torch.sigmoid(disc_fake)<0.5) / disc_real.shape[0]
-            d_acc = (d_acc_real + d_acc_fake) / 2
-            
-            if d_acc < d_acc_thresh:
-                # backward and optimize
-                disc.zero_grad()
-                loss_D.backward()
-                opt_disc.step()
+            # backward and optimize
+            disc.zero_grad()
+            loss_D.backward()
+            opt_disc.step()
         
         # Train Generator: min log(1 - D(G(z))) <-> max log(D(G(z))
         z = torch.randn(batch_size, noise_dim).to(device)
