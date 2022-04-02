@@ -7,7 +7,7 @@ Note that this is mainly for educational purposes, so it only contains the minim
 
 Please refer to [this table](#training) for training details
 
-- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs), [CRGAN](#CRGANs), [3D-DCGAN](#3DDCGANs)
+- Generative Adversarial Networks: [GAN](#GANs), [cGAN](#cGANs), [DCGAN](#DCGANs), [CRGAN](#CRGANs), [WGAN-gp](#WGAN-gp), [3D-DCGAN](#3DDCGANs)
 - MLP-like architectures: TODO
 - Convolutional Neural Networks: [U-net](#unet)
 - Transformers: TODO
@@ -43,18 +43,47 @@ Specific instructions will be provided in the "Implemented models" section, if n
 | 3D-DCGAN(G+D)  | 53,772,641 + 2,643,265   | 336.13 + 18.96  | 8min                     | 64^3 cube ShapeNet  | 16         | 1x NVIDIA 1070ti     |
 | U-net          | 31,033,955               | 4475.55         | 15min                    | Cityscapes          | 2          | 1x NVIDIA 1070ti     |
 
-
-- <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
-  - Paper: Generative Adversarial Nets, https://arxiv.org/abs/1406.2661, 2014
-  - Author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
-  - generated images from MNIST and Fashion-MNIST
-  <p align="center"><img src="assets/gan.gif" width="300">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/GAN_49.png" width="300"></p>
-  <p align="center"><img src="assets/GAN_fashion.gif" width="300">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/GAN_49_fashion.png" width="300"></p>
   
+- <i>3D Deep Convolutional Generative Adversarial Networks (3D-DCGANs)</i><a id="3DDCGANs">
+  - Paper: Learning a Probabilistic Latent Space of Object Shapes via 3D Generative-Adversarial Modeling, https://arxiv.org/abs/1910.12027, 2017
+  - Author(s): Jiajun Wu, Chengkai Zhang, Tianfan Xue, William T. Freeman, Joshua B. Tenenbaum
+  - Many thanks to Xingchang Huang for making his dataset code publicly available, here's the [link](https://github.com/xchhuang/simple-pytorch-3dgan) to the repo
+  - To train the model: 
+     - Download the data from Xingchang's repo, 
+     - Create a "ShapeNet_Chair" folder inside the datasets folder
+     - Move the data inside the "ShapeNet_Chair" folder
+     - Run train.py
+   - Training tricks:
+     - Consistency regularization(CR) on the output
+     - Discriminator trains for 2 iterations per generator update
+     - Discriminator only updates when its accuracy is below a threshold
+   - Best shapes generated within 100 epochs (left: CR=0; right: CR=1)
+   <p align="center">
+    <img width="300" src="assets/3DDCGAN_CR0.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/3DDCGAN_CR1.gif">
+   </p>
+
+  
+- <i>Wasserstein Generative Adversarial Networks with gradient penalty (WGAN-gp)</i><a id="WGAN-gp">
+  - Paper 1: Wasserstein GAN, https://arxiv.org/abs/1701.07875, 2017
+  - Author(s): Martin Arjovsky, Soumith Chintala, Léon Bottou
+  - Paper 2: Improved Training of Wasserstein GANs, https://arxiv.org/abs/1704.00028, 2017
+  - Author(s): Ishaan Gulrajani, Faruk Ahmed, Martin Arjovsky, Vincent Dumoulin, Aaron Courville
+  - Generated images from MNIST with different penalty coefficients (λ)
+  
+  
+  
+- <i>Consistency Regularized Generative Adversarial Networks (CRGANs)</i><a id="CRGANs">
+   - Paper: Consistency Regularization for Generative Adversarial Networks, https://arxiv.org/abs/1910.12027, 2019
+   - Author(s): Han Zhang, Zizhao Zhang, Augustus Odena, Honglak Lee
+   - Generated images from MNIST and Fashion-MNIST
+   <p align="center"><img width="300" src="assets/CRGAN.gif">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img width="300" src="assets/CRGAN_49.png"></p>
+   <p align="center"><img width="300" src="assets/CRGAN_fashion.gif">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <img width="300" src="assets/CRGAN_49_fashion.png"></p>
+
   
 - <i>Conditional Generative Adversarial Networks (cGANs)</i><a id="cGANs">
   - paper: Conditional Generative Adversarial Networks, https://arxiv.org/abs/1411.1784, 2014
@@ -79,37 +108,18 @@ Specific instructions will be provided in the "Implemented models" section, if n
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <img width="300" src="assets/DCGAN_49_fashion.png"></p>
   
- 
- - <i>Consistency Regularized for Generative Adversarial Networks (CRGANs)</i><a id="CRGANs">
-   - Paper: Consistency Regularization for Generative Adversarial Networks, https://arxiv.org/abs/1910.12027, 2019
-   - Author(s): Han Zhang, Zizhao Zhang, Augustus Odena, Honglak Lee
-   - Generated images from MNIST and Fashion-MNIST
-   <p align="center"><img width="300" src="assets/CRGAN.gif">
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <img width="300" src="assets/CRGAN_49.png"></p>
-   <p align="center"><img width="300" src="assets/CRGAN_fashion.gif">
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <img width="300" src="assets/CRGAN_49_fashion.png"></p>
   
- - <i>3D Deep Convolutional Generative Adversarial Networks (3D-DCGANs)</i><a id="3DDCGANs">
-   - Paper: Learning a Probabilistic Latent Space of Object Shapes via 3D Generative-Adversarial Modeling, https://arxiv.org/abs/1910.12027, 2017
-   - Author(s): Jiajun Wu, Chengkai Zhang, Tianfan Xue, William T. Freeman, Joshua B. Tenenbaum
-   - Many thanks to Xingchang Huang for making his dataset code publicly available, here's the [link](https://github.com/xchhuang/simple-pytorch-3dgan) to the repo
-   - To train the model: 
-     - Download the data from Xingchang's repo, 
-     - Create a "ShapeNet_Chair" folder inside the datasets folder
-     - Move the data inside the "ShapeNet_Chair" folder
-     - Run train.py
-   - Training tricks:
-     - Consistency regularization(CR) on the output
-     - Discriminator trains for 2 iterations per generator update
-     - Discriminator only updates when its accuracy is below a threshold
-   - Best shapes generated within 100 epochs (left: CR=0; right: CR=1)
-   <p align="center">
-    <img width="300" src="assets/3DDCGAN_CR0.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img width="300" src="assets/3DDCGAN_CR1.gif">
-   </p>
-
+- <i>Generative Adversarial Networks (GANs)</i><a id="GANs">
+  - Paper: Generative Adversarial Nets, https://arxiv.org/abs/1406.2661, 2014
+  - Author(s): Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
+  - generated images from MNIST and Fashion-MNIST
+  <p align="center"><img src="assets/gan.gif" width="300">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/GAN_49.png" width="300"></p>
+  <p align="center"><img src="assets/GAN_fashion.gif" width="300">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/GAN_49_fashion.png" width="300"></p>
+  
   
 - <i>U-net</i><a id="unet">
   - Paper: https://arxiv.org/pdf/1505.04597.pdf, 2015
@@ -123,4 +133,4 @@ Specific instructions will be provided in the "Implemented models" section, if n
   <p align="center">
     <img width="300" src="assets/unet.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <img width="300" src="assets/unet_49.png">
-  </p>
+  </p>  
