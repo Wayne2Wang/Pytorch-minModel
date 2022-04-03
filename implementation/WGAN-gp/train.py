@@ -54,7 +54,7 @@ def grad_penalty(critic, real, fake):
 # Hyper-parameters
 device = "cuda" if torch.cuda.is_available() else "cpu"
 lr = 3e-4
-penalty_coeff = 0
+penalty_coeff = 10
 noise_dim = 100
 img_dim = 28 * 28 * 1  # 784
 batch_size = 32
