@@ -70,9 +70,33 @@ Specific instructions will be provided in the "Implemented models" section, if n
   - Author(s): Martin Arjovsky, Soumith Chintala, Léon Bottou
   - Paper 2: Improved Training of Wasserstein GANs, https://arxiv.org/abs/1704.00028, 2017
   - Author(s): Ishaan Gulrajani, Faruk Ahmed, Martin Arjovsky, Vincent Dumoulin, Aaron Courville
-  - Generated images from MNIST with different penalty coefficients (λ)
+  - Here are some of my observations when training the models (on MNIST dataset only)
+    - Critic's gradient norm did get closer to 1 with higher λ's, but the image quality did not correlate well with λ
+    - Layer norm did a better job in regularizing Critic's gradient norm than batch norm
+    - When using batch norm in the Critic, the model seemed to generate higher quality image
+    - The model generated good quality images even without any normalization in the Critic
   
+  - Generated images from MNIST with different penalty coefficients (λ) and normalizations in the Critic
+    - Layer normalization as the authors recommended (top λ=0, bottom λ=10)
+    <p align="center"><img width="300" src="assets/wgan_gp_ln_0.gif">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/wgan_gp_ln_0_49.png"></p>
+    <p align="center"><img width="300" src="assets/wgan_gp_ln_10.gif">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/wgan_gp_ln_10_49.png"></p>
   
+    - Batch normalization (top λ=0, bottom λ=10)
+    <p align="center"><img width="300" src="assets/wgan_gp_bn_0.gif">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/wgan_gp_bn_0_49.png"></p>  
+     <p align="center"><img width="300" src="assets/wgan_gp_bn_10.gif">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/wgan_gp_bn_10_49.png"></p>   
+    
+    - None (λ=10)
+    <p align="center"><img width="300" src="assets/wgan_gp_none_10.gif">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <img width="300" src="assets/wgan_gp_none_10_49.png"></p>  
   
 - <i>Consistency Regularized Generative Adversarial Networks (CRGANs)</i><a id="CRGANs">
    - Paper: Consistency Regularization for Generative Adversarial Networks, https://arxiv.org/abs/1910.12027, 2019
